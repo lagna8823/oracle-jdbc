@@ -53,21 +53,21 @@ public class MemberService {
 	
 	// 회원가입 InsertMemberActionController
 	public int insertMember(String memberId, String memberPw, String memberName) {
-	int resultRow = 0;
-	Connection conn = null;
-	try {
-		conn = DBUtil.getConnection();
-		memberDao= new MemberDao();
-		resultRow = memberDao.insertMember(conn, memberId, memberPw, memberName);
-	} catch(Exception e) {
-		e.printStackTrace();
-	} finally {
+		int resultRow = 0;
+		Connection conn = null;
 		try {
-			conn.close();
-		} catch(SQLException e) {
+			conn = DBUtil.getConnection();
+			memberDao= new MemberDao();
+			resultRow = memberDao.insertMember(conn, memberId, memberPw, memberName);
+		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
-	}
-	return resultRow;	
+		return resultRow;	
 	}
 }

@@ -19,14 +19,14 @@ public class InsertMemberActionController extends HttpServlet {
 		String memberPw=request.getParameter("memberPw");
 		String memberName=request.getParameter("memberName");
 		int resultRow  = 0;
-		
+
 		// 디버깅
 		System.out.println(memberId+"<-- AddMemberActionController.doPost.memberId");
-		
+
 		// 모델 호출
 		MemberService memberService = new MemberService();
 		resultRow = memberService.insertMember(memberId, memberPw, memberName);
-		
+
 		if(resultRow !=0) {
 			// 가입성공
 			response.sendRedirect(request.getContextPath()+"/HomeController");

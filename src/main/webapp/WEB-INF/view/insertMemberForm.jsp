@@ -26,6 +26,9 @@
 			</table>
 			<button type="submit">가입하기</button>
 			</div>
+			<div>
+				<a href="${pageContext.request.contextPath}/LoginFormController">뒤로가기</a>
+			</div>
 		</form>
 	</body>
 </html>
