@@ -21,8 +21,13 @@ public class BoardService {
 				conn = DBUtil.getConnection();
 				boardDao= new BoardDao();
 				resultRow = boardDao.modifyBoard(conn, modifyBoard);
+				conn.commit(); // DBUtil.class에서 conn.setAutoCommit(false);
 			} catch(Exception e) {
-				e.printStackTrace();
+				try {
+		            conn.rollback(); // DBUtil.class에서 conn.setAutoCommit(false);
+		         } catch (SQLException e1) {
+		            e1.printStackTrace();
+		         }
 			} finally {
 				try {
 					conn.close();
@@ -41,7 +46,13 @@ public class BoardService {
 				conn = DBUtil.getConnection();
 				boardDao= new BoardDao();
 				resultRow = boardDao.removeBoard(conn, boardNo, memberId);
+				conn.commit(); // DBUtil.class에서 conn.setAutoCommit(false);
 			} catch(Exception e) {
+				try {
+		            conn.rollback(); // DBUtil.class에서 conn.setAutoCommit(false);
+		         } catch (SQLException e1) {
+		            e1.printStackTrace();
+		         }
 				e.printStackTrace();
 			} finally {
 				try {
@@ -79,7 +90,7 @@ public class BoardService {
 			return resultRow;	
 		}
 		
-		// 작성한 글보기
+		// 게시글 상세보기
 		public Board getBoardListByPageUser(int boardNo) {
 			  this.boardDao = new BoardDao();
 			  Board returnBoard= null;

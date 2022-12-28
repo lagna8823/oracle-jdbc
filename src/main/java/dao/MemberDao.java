@@ -49,6 +49,7 @@ public class MemberDao {
 			retrunMember.setMemberPw(rs.getString("memberPw"));
 			retrunMember.setMemberName(rs.getString("memberName"));
 		}
+		rs.close();
 		stmt.close();
 		return retrunMember;
 	}

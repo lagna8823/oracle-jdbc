@@ -28,18 +28,17 @@ public class RemoveBoardController extends HttpServlet {
 		// request 값세팅
 		String memberId=loginMember.getMemberId();
 		int boardNo=Integer.parseInt(request.getParameter("boardNo"));
-		int resultRow  = 0;
 		
 		// 모델 호출
 		BoardService boardService = new BoardService();
-		resultRow = boardService.removeBoard(boardNo, memberId);
+		int resultRow = boardService.removeBoard(boardNo, memberId);
 		
 		// 삭제성공
 		if(resultRow !=0) {
-		response.sendRedirect(request.getContextPath()+"/board/boardOne");
+		response.sendRedirect(request.getContextPath()+"/board/boardList");
 		return;
 		}
-		// 삭제실패 (세션 아이디 확인)
+		// 삭제실패 (아이디 확인)
 		String msg = URLEncoder.encode("작성자가 일치하지 않습니다.", "utf-8");
 		response.sendRedirect(request.getContextPath() + "/board/boardOne?msg="+msg);
 	}

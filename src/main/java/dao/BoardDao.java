@@ -12,18 +12,18 @@ import vo.Member;
 public class BoardDao {
 	
 	// 작성글 수정 ModifyBoardController
-		public int modifyBoard(Connection conn, Board modifyBoard) throws Exception {
-			int resultRow=0;
-			String sql = "UPDATE Board SET board_title=?, board_content=?, updatedate=sysdate  WHERE board_no=? AND member_id=?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, modifyBoard.getBoardTitle());
-			stmt.setString(2, modifyBoard.getBoardContent());
-			stmt.setInt(3, modifyBoard.getBoardNo());
-			stmt.setString(4, modifyBoard.getMemberId());
-			resultRow  = stmt.executeUpdate();
-			stmt.close();
-			return resultRow;
-		}	
+	public int modifyBoard(Connection conn, Board modifyBoard) throws Exception {
+		int resultRow=0;
+		String sql = "UPDATE Board SET board_title=?, board_content=?, updatedate=sysdate  WHERE board_no=? AND member_id=?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, modifyBoard.getBoardTitle());
+		stmt.setString(2, modifyBoard.getBoardContent());
+		stmt.setInt(3, modifyBoard.getBoardNo());
+		stmt.setString(4, modifyBoard.getMemberId());
+		resultRow  = stmt.executeUpdate();
+		stmt.close();
+		return resultRow;
+	}	
 		
 	// 작성글 삭제 RemoveBoardController
 	public int removeBoard(Connection conn, int boardNo, String memberId) throws Exception {
@@ -50,19 +50,21 @@ public class BoardDao {
 		return resultRow;
 	}
 	
-	// 게시판 상세보기
+	// 게시글 상세보기
 	public Board selectBoardListByPageUser(Connection conn, int boardNo) throws SQLException{
 		Board returnBoard = null;
 		String sql ="SELECT board_no boardNo, board_title boardTitle, board_content boardContent FROM(SELECT board_no, board_title, board_content FROM board ORDER BY board_no desc) where board_no=?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		ResultSet rs = stmt.executeQuery();
 		stmt.setInt(1, boardNo);
+		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
 			returnBoard = new Board();
-			rs.getInt("boardNo");
-			rs.getString("boardTitle");
-			rs.getString("boardContent");
+			returnBoard.setBoardNo(rs.getInt("boardNo"));
+			returnBoard.setBoardTitle(rs.getString("boardTitle"));
+			returnBoard.setBoardContent(rs.getString("boardContent"));
 		}
+		rs.close();
+		stmt.close();
 		return returnBoard;
 	}
 		
@@ -72,7 +74,7 @@ public class BoardDao {
 		String sql = " SELECT board_no boardNo, board_title boardTitle, createdate"
 				+ " FROM(SELECT rownum rnum, board_no, board_title, createdate "
 				+ "		FROM(SELECT board_no, board_title, createdate "
-				+ " 		FROM board ORDER BY board_no DESC))"
+				+ " 		FROM board ORDER BY to_number(board_no) DESC))"
 				+ " WHERE rnum BETWEEN ? AND ?"; // WHERE rnum >=? AND rnum <=?;
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, beginRow);

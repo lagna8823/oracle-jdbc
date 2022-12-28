@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,7 +7,8 @@
 	<title>memberOne</title>
 	</head>
 	<body>
-		<h1>${loginMember.memberName}회원님의 작성한 글목록</h1>
+		<h1>게시글 상세페이지</h1>
+		${msg}
 		<div>
 			<a href="${pageContext.request.contextPath}/home">홈으로</a>
 			<a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
@@ -20,18 +21,20 @@
 	<table border="1">
 		<tr>
 			<th>boardNo</th>
-			<th>boardTitle</th>
-			<th>boardContent</th>
-			<th>수정</th>
-			<th>삭제</th>
+			<td>${b.boardNo}</td>
 		</tr>
 		<tr>
-			<td>${b.boardNo}</td>
-			<td>${b.boardTitle}</td>
-			<td>${b.boardContent}</td>
-			<td><a href="${pageContext.request.contextPath}/board/modifyBoard?boardNo=${b.boardNo}">수정</a></td>
-			<td><a href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${b.boardNo}">삭제</a></td>
+			<th>boardTitle</th>
+			<td><input type="text" value="${b.boardTitle}"></td>
+		</tr>
+		<tr>
+			<th>boardContent</th>
+			<td><textarea rows="6" cols="80">${b.boardContent}</textarea></td>
 		</tr>
 	</table>
+	<div>
+		<a href="${pageContext.request.contextPath}/board/modifyBoard?boardNo=${b.boardNo}">수정</a>
+		<a href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${b.boardNo}">삭제</a>
+	</div>
 	</body>
 </html>
