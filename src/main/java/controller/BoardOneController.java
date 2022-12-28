@@ -24,29 +24,24 @@ public class BoardOneController extends HttpServlet {
 		 * 1) 글 수정(로그인 멤버 == 글쓴멤버)
 		 * 2) 글 삭제(로그인 멤버 == 글쓴멤버)
 		 */
-		
-		String boardNo = request.getParameter("boardNo");
-		String msg = request.getParameter("msg");
-	    request.setAttribute("msg", msg);
-	    int currentPage = 1;
-	    int rowPerPage = 10;
-	    //System.out.print(boardNo);
-	    
-	    this.boardService = new BoardService();
-		ArrayList<Board> list = boardService.getBoardListByPageUser(currentPage, rowPerPage);
-		request.setAttribute("boardList", list);
-		request.setAttribute("currentPage", currentPage); // view에서 필요
-		request.setAttribute("rowPerPage", rowPerPage); // view에서 필요
-	      
 		// 세션정보 받아오기
 		HttpSession session = request.getSession(); 
-		// 로그인 값 체크 로그인 전/후: loginMember -> null /  not null
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		if(loginMember == null) { // 로그인정보없을시
+		if(loginMember == null) {
 			response.sendRedirect(request.getContextPath()+"/member/login");
 			return;
 		}
+		
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		System.out.print(boardNo);
+		String msg = request.getParameter("msg");
+	    request.setAttribute("msg", msg);
+	    
+	    this.boardService = new BoardService();
+		Board returnBoard = boardService.getBoardListByPageUser(boardNo);
+		request.setAttribute("b", returnBoard);
 		session.setAttribute("loginMember", loginMember);
+		
 		// 작성글 View
 		request.getRequestDispatcher("/WEB-INF/view/board/boardOne.jsp").forward(request, response);
 	}

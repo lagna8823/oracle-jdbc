@@ -22,7 +22,6 @@
 		<div>
 			<a href="${pageContext.request.contextPath}/home">홈으로</a>
 			<a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-			<a href="${pageContext.request.contextPath}/board/boardOne">작성한 글보기</a>
 			<a href="${pageContext.request.contextPath}/board/boardList">게시판 전체보기</a>
 			<a href="${pageContext.request.contextPath}/member/memberOne">회원정보</a>
 		</div>

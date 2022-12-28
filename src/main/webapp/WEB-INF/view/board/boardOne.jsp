@@ -21,15 +21,17 @@
 		<tr>
 			<th>boardNo</th>
 			<th>boardTitle</th>
-			<th>createdate</th>
+			<th>boardContent</th>
+			<th>수정</th>
+			<th>삭제</th>
 		</tr>
-		<c:forEach var="b" items="${boardList}">
-			<tr>
-				<td>${b.boardNo}</td>
-				<td><a href="${pageContext.request.contextPath}/board/boardOne?boardNo=${b.boardNo}">${b.boardTitle}</a></td>
-				<td>${b.createdate}</td>
-			</tr>
-		</c:forEach>
+		<tr>
+			<td>${b.boardNo}</td>
+			<td>${b.boardTitle}</td>
+			<td>${b.boardContent}</td>
+			<td><a href="${pageContext.request.contextPath}/board/modifyBoard?boardNo=${b.boardNo}">수정</a></td>
+			<td><a href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${b.boardNo}">삭제</a></td>
+		</tr>
 	</table>
 	</body>
 </html>
