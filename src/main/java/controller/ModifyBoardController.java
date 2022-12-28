@@ -7,10 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/InsertMemberFormController")
-public class InsertMemberFormController extends HttpServlet {
+@WebServlet("/board/modifyBoardController")
+public class ModifyBoardController extends HttpServlet {
+    // 글 수정 폼
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		request.getRequestDispatcher("/WEB-INF/view/insertMemberForm.jsp").forward(request, response);
+	
 	}
+	// 글 수정 액션
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	}
+
 }

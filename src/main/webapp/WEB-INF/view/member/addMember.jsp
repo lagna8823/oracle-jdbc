@@ -4,12 +4,12 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>insertMemberForm</title>
+		<title>addMember</title>
 	</head>
 	<body>
-		<h1>Insert Member Page</h1>
-		<form action="${pageContext.request.contextPath}/InsertMemberActionController" method="post">
-			<div>
+		<h1>회원 가입</h1>
+		${msg}
+		<form action="${pageContext.request.contextPath}/member/addMember" method="post">
 			<table border="1">
 				<tr>
 					<th>아이디</th>
@@ -27,7 +27,7 @@
 			<button type="submit">가입하기</button>
 			</div>
 			<div>
-				<a href="${pageContext.request.contextPath}/LoginFormController">뒤로가기</a>
+				<a href="${pageContext.request.contextPath}/member/login">뒤로가기</a>
 			</div>
 		</form>
 	</body>

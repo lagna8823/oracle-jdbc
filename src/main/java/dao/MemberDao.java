@@ -9,8 +9,22 @@ import vo.Board;
 import vo.Member;
 
 public class MemberDao {
-	// 회원탈퇴 DeleteMemberActionController
-	public int deleteMember(Connection conn, String memberId, String memberPw) throws Exception {
+	
+	// 회원수정 ModifyMemberController
+	public int modifyMember(Connection conn, Member modifyMember) throws Exception {
+		int resultRow=0;
+		String sql = "UPDATE member SET member_pw=?, member_name=? WHERE member_id=? AND member_pw =?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, modifyMember.getMemberPw2());
+		stmt.setString(2, modifyMember.getMemberName());
+		stmt.setString(3, modifyMember.getMemberId());
+		stmt.setString(4, modifyMember.getMemberPw());
+		resultRow  = stmt.executeUpdate();
+		stmt.close();
+		return resultRow;
+	}	
+	// 회원탈퇴 RemoveMemberController
+	public int removeMember(Connection conn, String memberId, String memberPw) throws Exception {
 		int resultRow = 0; 
 		String sql = "DELETE FROM member WHERE member_id=? and member_pw =?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -39,8 +53,8 @@ public class MemberDao {
 		return retrunMember;
 	}
 	
-	// 회원가입 InsertMemberActionController
-	public int insertMember(Connection conn, String memberId, String memberPw, String memberName) throws Exception{
+	// 회원가입 AddMemberController
+	public int addMember(Connection conn, String memberId, String memberPw, String memberName) throws Exception{
 		int resultRow = 0;
 		String sql = "insert into member(member_id, member_pw, member_name, updatedate, createdate) values (?, ?, ?, sysdate, sysdate)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -51,12 +65,4 @@ public class MemberDao {
 		stmt.close();
 		return resultRow;
 	}
-	
-	public int insertBoard(Connection conn, Board board) {
-		String sql = "insert into board (board_no, board_title, board_content, member_id, updatedate, createdate) values ( board_seq.nextval, ?, ?, ?, sysdate, sysdate)";
-		return 0;
-	}
-
-	
-
 }
