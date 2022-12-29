@@ -40,6 +40,6 @@ public class RemoveBoardController extends HttpServlet {
 		}
 		// 삭제실패 (아이디 확인)
 		String msg = URLEncoder.encode("작성자가 일치하지 않습니다.", "utf-8");
-		response.sendRedirect(request.getContextPath() + "/board/boardOne?msg="+msg);
+		response.sendRedirect(request.getContextPath() + "/board/boardOne?msg="+msg+"&boardNo="+boardNo);
 	}
 }

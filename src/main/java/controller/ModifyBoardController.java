@@ -29,19 +29,23 @@ public class ModifyBoardController extends HttpServlet {
 			return;
 		}
 		
+		request.setCharacterEncoding("UTF-8");
 		int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 		
+		// 모델 호출 ( 게시글 번호로 작성자 정보확인)
 		this.boardService = new BoardService();
 		Board returnBoard = boardService.getBoardListByPageUser(boardNo);
+		System.out.println(loginMember.getMemberId()+"로그인멤버");
+		System.out.println(returnBoard.getMemberId()+"게시글의멤버");
+		if(!(loginMember.getMemberId()).equals(returnBoard.getMemberId())) {
+			String msg = URLEncoder.encode("작성자가 일치하지않습니다.", "utf-8");
+			response.sendRedirect(request.getContextPath() + "/board/boardOne?msg="+msg+"&boardNo="+boardNo);
+			return;
+	    }
+	    request.setAttribute("b", returnBoard);
 		
-		request.setAttribute("b", returnBoard);
-		session.setAttribute("loginMember", loginMember);
-		String msg = request.getParameter("msg");
-		System.out.print(msg);
-	    request.setAttribute("msg", msg);
-	    
-		// 작성글 View
-		request.getRequestDispatcher("/WEB-INF/view/board/boardOne.jsp").forward(request, response);
+		// 작성글 수정폼 View
+		request.getRequestDispatcher("/WEB-INF/view/board/modifyBoard.jsp").forward(request, response);
 	}
 	// 글 수정 액션
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -65,7 +69,7 @@ public class ModifyBoardController extends HttpServlet {
 		// 결과값이 없다면
 		if(resultRow == 0) {
 			String msg = URLEncoder.encode("입력된값을 확인하세요.", "utf-8");
-			response.sendRedirect(request.getContextPath() + "/board/modifyBoard");
+			response.sendRedirect(request.getContextPath() + "/board/modifyBoard?msg="+msg);
 			return;
 		}
 		// 결과값이 있다면

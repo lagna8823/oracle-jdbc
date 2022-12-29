@@ -26,23 +26,27 @@
 			<a href="${pageContext.request.contextPath}/member/memberOne">회원정보</a>
 		</div>
 		<form id="pageForm" method="get" action="${pageContext.request.contextPath}/home">
-		<select name="rowPerPage" id="rowPerPage">
-			<c:if test="${rowPerPage == 10}">
-				<option value="10" selected="selected">10</option>
-				<option value="20">20</option>
-				<option value="30">30</option>
-			</c:if>
-			<c:if test="${rowPerPage == 20}">
-				<option value="10">10</option>
-				<option value="20" selected="selected">20</option>
-				<option value="30">30</option>
-			</c:if>
-			<c:if test="${rowPerPage == 30}">
-				<option value="10">10</option>
-				<option value="20">20</option>
-				<option value="30" selected="selected">30</option>
-			</c:if>
-		</select>
+			<label for="word"> 검색 : </label>
+			<input type="text" name="word" id="word" value="${word}">
+			<button type="submit">검색</button>
+			
+			<select name="rowPerPage" id="rowPerPage">
+				<c:if test="${rowPerPage == 10}">
+					<option value="10" selected="selected">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+				</c:if>
+				<c:if test="${rowPerPage == 20}">
+					<option value="10">10</option>
+					<option value="20" selected="selected">20</option>
+					<option value="30">30</option>
+				</c:if>
+				<c:if test="${rowPerPage == 30}">
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="30" selected="selected">30</option>
+				</c:if>
+			</select>
 	</form>
 	<table border="1">
 		<tr>
@@ -59,8 +63,8 @@
 		</c:forEach>
 	</table>
 	<div>
-		<a href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}">이전</a>
-		<a href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}">다음</a>
+		<a href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}&word=${word}">이전</a>
+		<a href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}&word=${word}">다음</a>
 	</div>
 		
 	</body>

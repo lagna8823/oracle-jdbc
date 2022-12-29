@@ -25,11 +25,11 @@
 		</tr>
 		<tr>
 			<th>boardTitle</th>
-			<td><input type="text" value="${b.boardTitle}"></td>
+			<td><input type="text" value="${b.boardTitle}" readonly="readonly"></td>
 		</tr>
 		<tr>
 			<th>boardContent</th>
-			<td><textarea rows="6" cols="80">${b.boardContent}</textarea></td>
+			<td><textarea rows="6" cols="80" readonly="readonly">${b.boardContent}</textarea></td>
 		</tr>
 	</table>
 	<div>

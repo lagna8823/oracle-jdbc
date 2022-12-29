@@ -42,25 +42,32 @@ public class HomeController extends HttpServlet {
 			return;
 		}
 		
-		 int currentPage = 1;
-	     if(request.getParameter("currentPage") != null) {
-	        currentPage = Integer.parseInt(request.getParameter("currentPage"));
-	     }
-	      
-	     int rowPerPage = 10;
-	     if(request.getParameter("rowPerPage") != null) {
-	        rowPerPage = Integer.parseInt(request.getParameter("rowPerPage"));
-	     }
-	      
-	     this.boardService = new BoardService();
-	     ArrayList<Board> list = boardService.getBoardListByPage(currentPage, rowPerPage);
-	     request.setAttribute("boardList", list);
-	     request.setAttribute("currentPage", currentPage); // view에서 필요
-	     request.setAttribute("rowPerPage", rowPerPage); // view에서 필요
+		request.setCharacterEncoding("UTF-8");
+		String word = ("");
+		if(request.getParameter("word") != null) {
+	    	 word =request.getParameter("word");
+	     } 
+	    request.setAttribute("word", word);
 		
-	     session.setAttribute("loginMember", loginMember);
+		int currentPage = 1;
+	    if(request.getParameter("currentPage") != null) {
+	       currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	    }
+	      
+	    int rowPerPage = 10;
+	    if(request.getParameter("rowPerPage") != null) {
+	       rowPerPage = Integer.parseInt(request.getParameter("rowPerPage"));
+	    }
 	     
-	 	 // 홈 View
-	 	 request.getRequestDispatcher("/WEB-INF/view/home.jsp").forward(request, response);
+	    this.boardService = new BoardService();
+	    ArrayList<Board> list = boardService.getBoardListByPage(currentPage, rowPerPage, word);
+	    request.setAttribute("boardList", list);
+	    request.setAttribute("currentPage", currentPage); // view에서 필요
+	    request.setAttribute("rowPerPage", rowPerPage); // view에서 필요
+		
+	    session.setAttribute("loginMember", loginMember);
+	     
+	 	// 홈 View
+	 	request.getRequestDispatcher("/WEB-INF/view/home.jsp").forward(request, response);
 	}
 }

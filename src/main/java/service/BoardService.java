@@ -118,7 +118,7 @@ public class BoardService {
 		}
 				
 		// 게시판  전체
-		public ArrayList<Board> getBoardListByPage(int currentPage, int rowPerPage) {
+		public ArrayList<Board> getBoardListByPage(int currentPage, int rowPerPage, String word) {
 		      /*
 		          1) connection 생성 <- DBUtil.class
 		          2) beginRow, endRow 생성 <- currentPage,rowPerPage를 가공
@@ -130,7 +130,7 @@ public class BoardService {
 		         int beginRow = (currentPage-1)*rowPerPage+1;
 		         int endRow = beginRow + rowPerPage - 1;
 		         boardDao = new BoardDao();
-		         list = boardDao.selectBoardListByPage(conn, beginRow, endRow);
+		         list = boardDao.selectBoardListByPage(conn, beginRow, endRow, word);
 		         conn.commit(); // DBUtil.class에서 conn.setAutoCommit(false);
 		      } catch (Exception e) {
 		         try {

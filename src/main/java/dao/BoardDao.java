@@ -11,6 +11,7 @@ import vo.Member;
 
 public class BoardDao {
 	
+		
 	// 작성글 수정 ModifyBoardController
 	public int modifyBoard(Connection conn, Board modifyBoard) throws Exception {
 		int resultRow=0;
@@ -53,7 +54,7 @@ public class BoardDao {
 	// 게시글 상세보기
 	public Board selectBoardListByPageUser(Connection conn, int boardNo) throws SQLException{
 		Board returnBoard = null;
-		String sql ="SELECT board_no boardNo, board_title boardTitle, board_content boardContent FROM(SELECT board_no, board_title, board_content FROM board ORDER BY board_no desc) where board_no=?";
+		String sql ="SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId FROM(SELECT board_no, board_title, board_content, member_id FROM board ORDER BY board_no desc) where board_no=?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, boardNo);
 		ResultSet rs = stmt.executeQuery();
@@ -62,23 +63,31 @@ public class BoardDao {
 			returnBoard.setBoardNo(rs.getInt("boardNo"));
 			returnBoard.setBoardTitle(rs.getString("boardTitle"));
 			returnBoard.setBoardContent(rs.getString("boardContent"));
+			returnBoard.setMemberId(rs.getString("memberId"));
 		}
 		rs.close();
 		stmt.close();
 		return returnBoard;
 	}
 		
-	// 게시글 리스트 (검색 추가하기)
-	public ArrayList<Board> selectBoardListByPage(Connection conn, int beginRow, int endRow) throws SQLException{
+	// 게시글 리스트 (간단히 검색추가)
+	public ArrayList<Board> selectBoardListByPage(Connection conn, int beginRow, int endRow, String word) throws SQLException{
 		ArrayList<Board> list = new ArrayList<Board>();
-		String sql = " SELECT board_no boardNo, board_title boardTitle, createdate"
-				+ " FROM(SELECT rownum rnum, board_no, board_title, createdate "
-				+ "		FROM(SELECT board_no, board_title, createdate "
-				+ " 		FROM board ORDER BY to_number(board_no) DESC))"
+		String sql=null;
+		PreparedStatement stmt=null;
+		if(word.equals("") || word == null) {
+			word=("");
+		} 
+		sql = " SELECT board_no boardNo, board_title boardTitle, board_content, createdate"
+				+ " FROM(SELECT rownum rnum, board_no, board_title, board_content, createdate "
+				+ "		FROM(SELECT board_no, board_title, board_content, createdate "
+				+ " 		FROM board WHERE board_content LIKE ? OR board_title LIKE ? ORDER BY to_number(board_no) DESC))"
 				+ " WHERE rnum BETWEEN ? AND ?"; // WHERE rnum >=? AND rnum <=?;
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, beginRow);
-		stmt.setInt(2, endRow);
+		 stmt = conn.prepareStatement(sql);
+		 stmt.setString(1, "%"+word+"%");
+		 stmt.setString(2, "%"+word+"%");
+		 stmt.setInt(3, beginRow);
+		 stmt.setInt(4, endRow);
 		ResultSet rs = stmt.executeQuery();
 		while(rs.next()) {
 			Board b = new Board();
