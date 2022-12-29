@@ -71,28 +71,66 @@ public class BoardDao {
 	}
 		
 	// 게시글 리스트 (간단히 검색추가)
-	public ArrayList<Board> selectBoardListByPage(Connection conn, int beginRow, int endRow, String word) throws SQLException{
+	public ArrayList<Board> selectBoardListByPage(Connection conn, int beginRow, int endRow, String word, String search) throws SQLException{
 		ArrayList<Board> list = new ArrayList<Board>();
 		String sql=null;
 		PreparedStatement stmt=null;
 		if(word.equals("") || word == null) {
 			word=("");
 		} 
-		sql = " SELECT board_no boardNo, board_title boardTitle, board_content, createdate"
-				+ " FROM(SELECT rownum rnum, board_no, board_title, board_content, createdate "
-				+ "		FROM(SELECT board_no, board_title, board_content, createdate "
-				+ " 		FROM board WHERE board_content LIKE ? OR board_title LIKE ? ORDER BY to_number(board_no) DESC))"
-				+ " WHERE rnum BETWEEN ? AND ?"; // WHERE rnum >=? AND rnum <=?;
-		 stmt = conn.prepareStatement(sql);
-		 stmt.setString(1, "%"+word+"%");
-		 stmt.setString(2, "%"+word+"%");
-		 stmt.setInt(3, beginRow);
-		 stmt.setInt(4, endRow);
+		if(search.equals("") || search == null) {
+			search=("");
+			sql = " SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId, createdate"
+					+ " FROM(SELECT rownum rnum, board_no, board_title, board_content, member_id, createdate "
+					+ "		FROM(SELECT board_no, board_title, board_content, member_id, createdate "
+					+ " 		FROM board WHERE board_title LIKE ? OR board_content LIKE ? OR member_id LIKE ? ORDER BY to_number(board_no) DESC))"
+					+ " WHERE rnum BETWEEN ? AND ?"; // WHERE rnum >=? AND rnum <=?;
+			 stmt = conn.prepareStatement(sql);
+			 stmt.setString(1, "%"+word+"%");
+			 stmt.setString(2, "%"+word+"%");
+			 stmt.setString(3, "%"+word+"%");
+			 stmt.setInt(4, beginRow);
+			 stmt.setInt(5, endRow);
+		}
+		if(search.equals("title")) {
+			sql = " SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId, createdate"
+					+ " FROM(SELECT rownum rnum, board_no, board_title, board_content, member_id, createdate "
+					+ "		FROM(SELECT board_no, board_title, board_content, member_id, createdate "
+					+ " 		FROM board WHERE board_title LIKE ? ORDER BY to_number(board_no) DESC))"
+					+ " WHERE rnum BETWEEN ? AND ?"; 
+			stmt = conn.prepareStatement(sql);
+			 stmt.setString(1, "%"+word+"%");
+			 stmt.setInt(2, beginRow);
+			 stmt.setInt(3, endRow);
+		} else if(search.equals("content")) {
+			sql = " SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId, createdate"
+					+ " FROM(SELECT rownum rnum, board_no, board_title, board_content, memberId, createdate "
+					+ "		FROM(SELECT board_no, board_title, board_content, createdate "
+					+ " 		FROM board WHERE board_content LIKE ? ORDER BY to_number(board_no) DESC))"
+					+ " WHERE rnum BETWEEN ? AND ?";
+			stmt = conn.prepareStatement(sql);
+			 stmt.setString(1, "%"+word+"%");
+			 stmt.setInt(2, beginRow);
+			 stmt.setInt(3, endRow);
+		} else if(search.equals("memberId")) {
+			sql = " SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId. createdate"
+					+ " FROM(SELECT rownum rnum, board_no, board_title, board_content, createdate "
+					+ "		FROM(SELECT board_no, board_title, board_content, createdate "
+					+ " 		FROM board WHERE member_id LIKE ? ORDER BY to_number(board_no) DESC))"
+					+ " WHERE rnum BETWEEN ? AND ?"; 
+			stmt = conn.prepareStatement(sql);
+			 stmt.setString(1, "%"+word+"%");
+			 stmt.setInt(2, beginRow);
+			 stmt.setInt(3, endRow);
+		}
+		 
 		ResultSet rs = stmt.executeQuery();
 		while(rs.next()) {
 			Board b = new Board();
 			b.setBoardNo(rs.getInt("boardNo"));
 			b.setBoardTitle(rs.getString("boardTitle"));
+			b.setBoardContent(rs.getString("boardContent"));
+			b.setMemberId(rs.getString("memberId"));
 			b.setCreatedate(rs.getString("createdate"));
 			list.add(b);
 		}

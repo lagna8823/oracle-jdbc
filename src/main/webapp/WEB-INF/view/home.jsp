@@ -35,39 +35,59 @@
 			<a href="${pageContext.request.contextPath}/board/boardList">게시판 전체보기</a>
 			<a href="${pageContext.request.contextPath}/member/memberOne">회원정보</a>
 		</div>
-		<form id="pageForm" method="get" action="${pageContext.request.contextPath}/home">
+		<form id="pageForm" method="get" action="${pageContext.request.contextPath}/board/boardList">
+			
+			<select name="search" id="search">
+				<c:if test="${search == title}">
+					<option value="title" selected="selected">title</option>
+					<option value="content">content</option>
+					<option value="memberId">memberId</option>
+				</c:if>
+				<c:if test="${search == content}">
+					<option value="title">title</option>
+					<option value="content" selected="selected">content</option>
+					<option value="memberId">memberId</option>
+				</c:if>
+				<c:if test="${search == memberId}">
+					<option value="title">title</option>
+					<option value="content">content</option>
+					<option value="memberId" selected="selected">memberId</option>
+				</c:if>
+				
+			</select>
 			<label for="word"> 검색 : </label>
 			<input type="text" name="word" id="word" value="${word}">
 			<button type="submit">검색</button>
-			
 			<select name="rowPerPage" id="rowPerPage">
 				<c:if test="${rowPerPage == 10}">
-					<option value="10" selected="selected">10</option>
-					<option value="20">20</option>
-					<option value="30">30</option>
-				</c:if>
-				<c:if test="${rowPerPage == 20}">
-					<option value="10">10</option>
-					<option value="20" selected="selected">20</option>
-					<option value="30">30</option>
-				</c:if>
-				<c:if test="${rowPerPage == 30}">
-					<option value="10">10</option>
-					<option value="20">20</option>
-					<option value="30" selected="selected">30</option>
-				</c:if>
+						<option value="10" selected="selected">10</option>
+						<option value="20">20</option>
+						<option value="30">30</option>
+					</c:if>
+					<c:if test="${rowPerPage == 20}">
+						<option value="10">10</option>
+						<option value="20" selected="selected">20</option>
+						<option value="30">30</option>
+					</c:if>
+					<c:if test="${rowPerPage == 30}">
+						<option value="10">10</option>
+						<option value="20">20</option>
+						<option value="30" selected="selected">30</option>
+					</c:if>	
 			</select>
 	</form>
 	<table border="1">
 		<tr>
 			<th>boardNo</th>
 			<th>boardTitle</th>
+			<th>memberId</th>
 			<th>createdate</th>
 		</tr>
 		<c:forEach var="b" items="${boardList}">
 			<tr>
 				<td>${b.boardNo}</td>
 				<td><a href="${pageContext.request.contextPath}/board/boardOne?boardNo=${b.boardNo}">${b.boardTitle}</a></td>
+				<td>${b.memberId}</td>
 				<td>${b.createdate}</td>
 			</tr>
 		</c:forEach>
