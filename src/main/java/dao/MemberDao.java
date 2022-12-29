@@ -23,6 +23,21 @@ public class MemberDao {
 		stmt.close();
 		return resultRow;
 	}	
+	// 회원탈퇴시 비밀번호검증
+	public Member selectPw(Connection conn, Member member) throws Exception {
+		Member pwMember = null;
+		String sql = "SELECT member_pw memberPw FROM member WHERE member_id =?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, member.getMemberId());
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			pwMember= new Member();
+			pwMember.setMemberPw(rs.getString("memberPw"));
+		}
+		rs.close();
+		stmt.close();
+		return pwMember;
+		}
 	// 회원탈퇴 RemoveMemberController
 	public int removeMember(Connection conn, String memberId, String memberPw) throws Exception {
 		int resultRow = 0; 

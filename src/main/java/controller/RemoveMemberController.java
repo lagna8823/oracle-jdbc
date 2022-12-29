@@ -28,10 +28,21 @@ public class RemoveMemberController extends HttpServlet {
 		response.sendRedirect(request.getContextPath()+"/member/login");
 		return;
 	}
+	// request 값세팅
+	request.setCharacterEncoding("UTF-8");
+	String memberId=loginMember.getMemberId();
+	Member member = new Member();
+	member.setMemberId(memberId);
 	
 	String msg = request.getParameter("msg");
     request.setAttribute("msg", msg);
     
+    // 모델 호출
+ 	MemberService memberService = new MemberService();
+ 	Member pwMember = memberService.selectPw(member);
+ 	
+	session.setAttribute("loginMemberPw", loginMember.getMemberPw());
+	System.out.print(loginMember.getMemberPw());
 	//  회원탈퇴 폼 View
 	request.getRequestDispatcher("/WEB-INF/view/member/removeMember.jsp").forward(request, response);
 	}
@@ -40,6 +51,16 @@ public class RemoveMemberController extends HttpServlet {
 	/*
 	 *  redirect -> get방식 /member/logout <- 컨트롤러 요청
 	 */
+		
+	// 세션정보 받아오기
+	HttpSession session = request.getSession();
+	// 로그인 값 체크
+	Member loginMember = (Member)session.getAttribute("loginMember");
+	if(loginMember == null) {
+		response.sendRedirect(request.getContextPath()+"/member/login");
+		return;
+	}	
+	
 	// request 값세팅
 	request.setCharacterEncoding("UTF-8");
 	String memberId=request.getParameter("memberId");
@@ -58,5 +79,8 @@ public class RemoveMemberController extends HttpServlet {
 	// 탈퇴실패 (비밀번호확인)
 	String msg = URLEncoder.encode("비밀번호가 틀렸습니다.", "utf-8");
 	response.sendRedirect(request.getContextPath() + "/member/removeMember?msg="+msg);
+	
+	
+	
 	}
 }

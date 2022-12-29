@@ -12,6 +12,16 @@
 				$('#pageForm').submit();
 				alert('change');
 			})
+			
+			$('#logout').click(function(){
+				var out = confirm('로그아웃 하시겠습니까?');
+				if(out == true){
+					alert('로그아웃 되었습니다.')
+				} else { 
+					alert('취소')
+					return false;
+				}
+			});
 		});
 	</script>
 	</head>
@@ -21,7 +31,7 @@
 		</div>
 		<div>
 			<a href="${pageContext.request.contextPath}/home">홈으로</a>
-			<a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+			<a id="logout" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
 			<a href="${pageContext.request.contextPath}/board/boardList">게시판 전체보기</a>
 			<a href="${pageContext.request.contextPath}/member/memberOne">회원정보</a>
 		</div>

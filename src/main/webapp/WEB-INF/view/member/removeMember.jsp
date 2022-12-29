@@ -7,8 +7,10 @@
 	<title>Remove Member</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
+		
 		$(document).ready(function() {
-			
+			console.log(${loginMemberPw});
+			console.log($('#pw').val());
 			// pw유효성 체크
 			$('#pw').blur(function(){
 				if ($('#pw').val().length < 4) {
@@ -20,15 +22,29 @@
 			
 			// 페이지에 바로 버턴 누름을 방지하기 위해
 			$('#signinBtn').click(function() {
-				
+						
 				// PW 유효성 체크
 				if( ($('#pw').val().length) < 1) {
 					alert('비밀번호가 입력되지 않았습니다.');
 					$('#pw').focus();
-					return;
-				}	
-				$('#signinForm').submit();
-				alert('회원탈퇴 성공');
+					return 
+				} else { 
+						 
+					// 탈퇴 확인
+					var out = confirm('정말로 탈퇴 하시겠습니까?');
+						if(out == true){
+						 	if( ${loginMemberPw} == $('#pw').val() ){
+								$('#signinForm').submit();
+								alert('탈퇴되었습니다.');
+							} else {
+								alert('취소되었습니다.'); 
+								return false;
+							}
+						} else { 
+							alert('취소되었습니다.');
+							return false;
+						}
+				}
 			});
 		});
 	</script>

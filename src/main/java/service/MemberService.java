@@ -29,7 +29,27 @@ public class MemberService {
 		}
 		return resultRow;	
 	}
-		
+	// 회원탈퇴시 비밀번호 검증
+	public Member selectPw(Member member) {
+		this.memberDao = new MemberDao();
+		Member pwMember= new Member();
+		Connection conn = null;
+		try {
+			conn = DBUtil.getConnection();
+			memberDao= new MemberDao();
+			pwMember = memberDao.selectPw(conn, member);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return pwMember;	
+		}	
+	
 	// 회원탈퇴 RemoveMemberController
 	public int removeMember(String memberId, String memberPw) {
 		int resultRow = 0;
