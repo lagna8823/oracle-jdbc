@@ -35,8 +35,10 @@ public class ModifyBoardController extends HttpServlet {
 		// 모델 호출 ( 게시글 번호로 작성자 정보확인)
 		this.boardService = new BoardService();
 		Board returnBoard = boardService.getBoardListByPageUser(boardNo);
+		// 디버깅
 		System.out.println(loginMember.getMemberId()+"로그인멤버");
 		System.out.println(returnBoard.getMemberId()+"게시글의멤버");
+		// 작성자 확인
 		if(!(loginMember.getMemberId()).equals(returnBoard.getMemberId())) {
 			String msg = URLEncoder.encode("작성자가 일치하지않습니다.", "utf-8");
 			response.sendRedirect(request.getContextPath() + "/board/boardOne?msg="+msg+"&boardNo="+boardNo);
@@ -51,16 +53,26 @@ public class ModifyBoardController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 세션정보 받아오기
 		HttpSession session = request.getSession();
+		// 로그인 값 체크
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		if(loginMember == null) {
+			response.sendRedirect(request.getContextPath()+"/member/login");
+			return;
+		}
+		
 		// request 값세팅
 		request.setCharacterEncoding("UTF-8");
 		int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 		String boardTitle=request.getParameter("boardTitle");
 		String boardContent=request.getParameter("boardContent");
+		String memberId=loginMember.getMemberId();
 		
+		// 매개값
 		Board modifyBoard = new Board();
 		modifyBoard.setBoardNo(boardNo);
 		modifyBoard.setBoardTitle(boardTitle);
 		modifyBoard.setBoardContent(boardContent);
+		modifyBoard.setMemberId(memberId);
 		
 		// 모델 호출(수정)
 		BoardService boardService = new BoardService();

@@ -30,7 +30,7 @@ public class ModifyMemberController extends HttpServlet {
 	
 	String msg = request.getParameter("msg");
     request.setAttribute("msg", msg);
-    
+	session.setAttribute("loginMember", loginMember);
 	// 회원정보 수정폼 View
 	request.getRequestDispatcher("/WEB-INF/view/member/modifyMember.jsp").forward(request, response);
 	}
@@ -42,6 +42,12 @@ public class ModifyMemberController extends HttpServlet {
 	*/
 	// 세션정보 받아오기
 	HttpSession session = request.getSession();
+	// 로그인 값 체크
+	Member loginMember = (Member)session.getAttribute("loginMember");
+	if(loginMember == null) {
+		response.sendRedirect(request.getContextPath()+"/member/login");
+		return;
+	}
 	// request 값세팅
 	request.setCharacterEncoding("UTF-8");
 	String memberId=request.getParameter("memberId");
@@ -55,13 +61,10 @@ public class ModifyMemberController extends HttpServlet {
 	member.setMemberPw2(memberPw2);
 	member.setMemberName(memberName);
 	
-	// 모델 호출(수정)
+	// 모델 호출
 	MemberService memberService = new MemberService();
-	int resultRow = memberService.modifyMember(member);
-	
-	// 모델 호출(바뀐값 검색)
-	MemberService memberService1 = new MemberService();
-	member = memberService1.login(member);
+	int resultRow = memberService.modifyMember(member); 
+	System.out.print(resultRow);
 	
 	// 결과값이 없다면
 	if(resultRow == 0) {
@@ -69,8 +72,8 @@ public class ModifyMemberController extends HttpServlet {
 		response.sendRedirect(request.getContextPath() + "/member/modifyMember?msg="+msg);
 		return;
 	}
-	// 결과값이 있다면 수정된 값 세션에 저장
-	session.setAttribute("loginMember", member);
+	// 결과값이 있다면 
+	session.setAttribute("loginMember", loginMember);
 	response.sendRedirect(request.getContextPath()+"/member/memberOne");
 	}
 }
