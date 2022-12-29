@@ -5,6 +5,22 @@
 	<head>
 	<meta charset="UTF-8">
 	<title>memberOne</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			
+			$('#delete').click(function(){
+				var del = confirm('삭제하시겠습니까?');
+				if(del == true){
+					alert('삭제되었습니다.')
+				} else { 
+					alert('취소')
+					return false;
+				}
+			});
+		});
+	</script>
 	</head>
 	<body>
 		<h1>게시글 상세페이지</h1>
@@ -34,7 +50,7 @@
 	</table>
 	<div>
 		<a href="${pageContext.request.contextPath}/board/modifyBoard?boardNo=${b.boardNo}">수정</a>
-		<a href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${b.boardNo}">삭제</a>
+		<a id="delete" href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${b.boardNo}">삭제</a>
 	</div>
 	</body>
 </html>

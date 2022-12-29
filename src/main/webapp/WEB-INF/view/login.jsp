@@ -12,9 +12,9 @@
 			// id유효성 체크
 			$('#id').blur(function() {
 				if ($('#id').val()==('')) {
-					$('#idMsg').text('아이디를 입력해주세요');
+					$('#idPwMsg').text('아이디를 입력해주세요');
 				} else if ($('#id').val().length > 9) {
-					$('#idMsg').text('아이디 또는 비밀번호를 확인해주세요');
+					$('#idPwMsg').text('아이디 또는 비밀번호를 확인해주세요');
 					$('#id').focus();
 				} else {
 					console.log($('#id').val()); 
@@ -26,9 +26,9 @@
 			// pw유효성 체크
 			$('#pw').blur(function(){
 				if ($('#pw').val().length < 4) {
-					$('#pwMsg').text('아이디 또는 비밀번호를 확인해주세요');
+					$('#idPwMsg').text('아이디 또는 비밀번호를 확인해주세요');
 				} else {
-					$('#pwMsg').text('');
+					$('#idPwMsg').text('');
 				}
 			});
 			
@@ -48,7 +48,6 @@
 					return;
 				}	
 				$('#signinForm').submit();
-				alert('로그인 성공');
 			});
 		});
 	</script>
@@ -74,8 +73,7 @@
 			</tr>	
 		</table>
 		<button type="button" id="signinBtn">로그인</button>
-		<span style="color:red;" id="idMsg" class="msg"></span>
-		<span style="color:red;" id="pwMsg" class="msg"></span>
+		<span style="color:red;" id="idPwMsg" class="msg"></span>
 		</div>
 		</form>
 		<div>

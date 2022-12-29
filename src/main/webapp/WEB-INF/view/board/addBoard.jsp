@@ -13,13 +13,13 @@
 				// TITLE 유효성 체크
 				$('#bt').blur(function() {
 					if ($('#bt').val()==('')) {
-						$('#btMsg').text('제목을 입력해주세요');
+						$('#btBcMsg').text('제목을 입력해주세요');
 					} else if ($('#bt').val().length > 41) {
-						$('#btMsg').text('제목은 40자리까지 입력가능합니다.');
+						$('#btBcMsg').text('제목은 40자리까지 입력가능합니다.');
 						$('#bt').focus();
 					} else {
 						console.log($('#bt').val()); 
-						$('#btMsg').text('');
+						$('#btBcMsg').text('');
 						$('#bc').focus();
 					}
 				});
@@ -27,12 +27,12 @@
 				// CONTENT 유효성 체크
 				$('#bc').blur(function(){
 					if ($('#bc').val()==('')) {
-						$('#bcMsg').text('내용을 입력해주세요');
+						$('#btBcMsg').text('내용을 입력해주세요');
 					} else if ($('#bc').val().length < 2) {
 						$('#bcMsg').text('내용은 2자이상이어야 합니다');
 					} else {
 						console.log($('#bc').val()); 
-						$('#bcMsg').text('');
+						$('#btBcMsg').text('');
 					}
 				});
 				
@@ -74,7 +74,7 @@
 				</tr>
 			</table>
 			<button type="button" id="signinBtn">작성하기</button>
-			<span style="color:red;" id="btMsg" class="msg"></span><span style="color:red;" id="bcMsg" class="msg"></span>
+			<span style="color:red;" id="btBcMsg" class="msg"></span>
 			</div>
 			<div>
 				<a href="${pageContext.request.contextPath}/board/boardList">뒤로가기</a>

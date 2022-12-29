@@ -9,8 +9,9 @@
 	<script>
 		
 		$(document).ready(function() {
-			console.log(${loginMemberPw});
-			console.log($('#pw').val());
+			// 디버깅 
+			//console.log(${loginMemberPw});
+			//console.log($('#pw').val());
 			// pw유효성 체크
 			$('#pw').blur(function(){
 				if ($('#pw').val().length < 4) {
@@ -30,7 +31,7 @@
 					return 
 				} else { 
 						 
-					// 탈퇴 확인
+					// 탈퇴 비밀번호 검증
 					var out = confirm('정말로 탈퇴 하시겠습니까?');
 						if(out == true){
 						 	if( ${loginMemberPw} == $('#pw').val() ){

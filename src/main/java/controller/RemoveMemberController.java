@@ -28,12 +28,14 @@ public class RemoveMemberController extends HttpServlet {
 		response.sendRedirect(request.getContextPath()+"/member/login");
 		return;
 	}
+	
 	// request 값세팅
 	request.setCharacterEncoding("UTF-8");
 	String memberId=loginMember.getMemberId();
 	Member member = new Member();
 	member.setMemberId(memberId);
 	
+	// request msg view로
 	String msg = request.getParameter("msg");
     request.setAttribute("msg", msg);
     
@@ -41,8 +43,8 @@ public class RemoveMemberController extends HttpServlet {
  	MemberService memberService = new MemberService();
  	Member pwMember = memberService.selectPw(member);
  	
-	session.setAttribute("loginMemberPw", loginMember.getMemberPw());
-	System.out.print(loginMember.getMemberPw());
+ 	request.setAttribute("loginMemberPw", pwMember.getMemberPw());
+	//System.out.print(loginMember.getMemberPw());
 	//  회원탈퇴 폼 View
 	request.getRequestDispatcher("/WEB-INF/view/member/removeMember.jsp").forward(request, response);
 	}
