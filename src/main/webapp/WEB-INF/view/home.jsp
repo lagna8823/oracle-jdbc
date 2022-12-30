@@ -35,25 +35,32 @@
 			<a href="${pageContext.request.contextPath}/board/boardList">게시판 전체보기</a>
 			<a href="${pageContext.request.contextPath}/member/memberOne">회원정보</a>
 		</div>
-		<form id="pageForm" method="get" action="${pageContext.request.contextPath}/board/boardList">
-			
-			<select name="search" id="search">
-				<c:if test="${search == title}">
+		<form id="pageForm" method="get" action="${pageContext.request.contextPath}/home">
+			<select name="search" id="search" value="${search}">
+				<c:if test="${search == ('')}">
+					<option value="" selected="selected">-선택-</option>
+					<option value="title" >title</option>
+					<option value="content">content</option>
+					<option value="memberId">memberId</option>
+				</c:if>
+				<c:if test="${search eq 'title'}">
+					<option value="" >-선택-</option>
 					<option value="title" selected="selected">title</option>
 					<option value="content">content</option>
 					<option value="memberId">memberId</option>
 				</c:if>
-				<c:if test="${search == content}">
-					<option value="title">title</option>
+				<c:if test="${search eq 'content'}">
+					<option value="" >-선택-</option>
+					<option value="title" >title</option>
 					<option value="content" selected="selected">content</option>
 					<option value="memberId">memberId</option>
 				</c:if>
-				<c:if test="${search == memberId}">
-					<option value="title">title</option>
+				<c:if test="${search eq 'memberId'}">
+					<option value="" >-선택-</option>
+					<option value="title" >title</option>
 					<option value="content">content</option>
 					<option value="memberId" selected="selected">memberId</option>
 				</c:if>
-				
 			</select>
 			<label for="word"> 검색 : </label>
 			<input type="text" name="word" id="word" value="${word}">

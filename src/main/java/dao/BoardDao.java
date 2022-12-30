@@ -72,6 +72,7 @@ public class BoardDao {
 		
 	// 게시글 리스트 (간단히 검색추가)
 	public ArrayList<Board> selectBoardListByPage(Connection conn, int beginRow, int endRow, String word, String search) throws SQLException{
+		 System.out.print("search");
 		ArrayList<Board> list = new ArrayList<Board>();
 		String sql=null;
 		PreparedStatement stmt=null;
@@ -104,18 +105,18 @@ public class BoardDao {
 			 stmt.setInt(3, endRow);
 		} else if(search.equals("content")) {
 			sql = " SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId, createdate"
-					+ " FROM(SELECT rownum rnum, board_no, board_title, board_content, memberId, createdate "
-					+ "		FROM(SELECT board_no, board_title, board_content, createdate "
+					+ " FROM(SELECT rownum rnum, board_no, board_title, board_content, member_id, createdate "
+					+ "		FROM(SELECT board_no, board_title, board_content, member_id, createdate "
 					+ " 		FROM board WHERE board_content LIKE ? ORDER BY to_number(board_no) DESC))"
-					+ " WHERE rnum BETWEEN ? AND ?";
+					+ " WHERE rnum BETWEEN ? AND ?"; 
 			stmt = conn.prepareStatement(sql);
 			 stmt.setString(1, "%"+word+"%");
 			 stmt.setInt(2, beginRow);
 			 stmt.setInt(3, endRow);
 		} else if(search.equals("memberId")) {
-			sql = " SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId. createdate"
-					+ " FROM(SELECT rownum rnum, board_no, board_title, board_content, createdate "
-					+ "		FROM(SELECT board_no, board_title, board_content, createdate "
+			sql = " SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId, createdate"
+					+ " FROM(SELECT rownum rnum, board_no, board_title, board_content, member_id, createdate "
+					+ "		FROM(SELECT board_no, board_title, board_content, member_id, createdate "
 					+ " 		FROM board WHERE member_id LIKE ? ORDER BY to_number(board_no) DESC))"
 					+ " WHERE rnum BETWEEN ? AND ?"; 
 			stmt = conn.prepareStatement(sql);

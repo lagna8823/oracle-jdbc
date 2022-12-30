@@ -52,8 +52,10 @@ public class HomeController extends HttpServlet {
 	    String search = ("");
 	   if(request.getParameter("search") != null) {
 		   search =request.getParameter("search");
+		   System.out.print(search+"받아온값");
 	   } 
-		
+	   
+	   System.out.print(search+"홈컨트롤러");
 		int currentPage = 1;
 	    if(request.getParameter("currentPage") != null) {
 	       currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -70,7 +72,7 @@ public class HomeController extends HttpServlet {
 	    request.setAttribute("currentPage", currentPage); // view에서 필요
 	    request.setAttribute("rowPerPage", rowPerPage); // view에서 필요
 	    request.setAttribute("search", search); // view에서 필요
-		
+	    
 	    session.setAttribute("loginMember", loginMember);
 	     
 	 	// 홈 View
