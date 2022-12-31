@@ -301,20 +301,20 @@
 	.react2 {
 		box-sizing: border-box;
 		position: absolute;
-		top:  200px;
+		top:  210px;
 		left: 250px;
 	}
 	.react3 {
 		box-sizing: border-box;
 		position: absolute;
-		top: 201px;
+		top: 210px;
 		left: 150px;
 	}
 	.react4 {
 		box-sizing: border-box;
 		position: absolute;
 		top: 226px;
-		left: 40px;
+		right: 40px;
 	}
 	</style>
 	
@@ -326,7 +326,7 @@
 			$('#id').blur(function() {
 				if ($('#id').val()==('')) {
 					$('#idPwMsg').text('아이디를 입력해주세요');
-				} else if ($('#id').val().length > 9) {
+				} else if ($('#id').val().length > 8) {
 					$('#idPwMsg').text('아이디 또는 비밀번호를 확인해주세요');
 					$('#id').focus();
 				} else {
@@ -366,41 +366,43 @@
 	</script>
 	</head>
 	<body>
-		<div class="login-box">
-		  <h2>Login</h2>
-		  <form id="signinForm" action="${pageContext.request.contextPath}/member/login" method="post">
-		    <div class="user-box">
-		      <input type="text" id="id" name="memberId" required="">
-		      <label>User ID</label>
-		    </div>
-		    <div class="user-box">
-		      <input type="password" id="pw" name="memberPw" required="">
-		      <label>Password</label>
-		    </div>
-		    <div class="react1">
-		    	<span class="react2">
-				   <a href="${pageContext.request.contextPath}/member/addMember">
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						회원가입
-				    </a>  
-			     </span>
-			     <span class="react3">
-				     <button type="button" id="signinBtn">
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						로그인
-				     </button>
-			    </span>
-			    <div class="react4">
-			    	 <span style="color:red;" id="idPwMsg" class="msg"></span>${msg}
+		<tbody>
+			<div class="login-box">
+			  <h2>Login</h2>
+			  <form id="signinForm" action="${pageContext.request.contextPath}/member/login" method="post">
+			    <div class="user-box">
+			      <input type="text" id="id" name="memberId" required="">
+			      <label>User ID</label>
 			    </div>
+			    <div class="user-box">
+			      <input type="password" id="pw" name="memberPw" required="">
+			      <label>Password</label>
+			    </div>
+			    <div class="react1">
+			    	<span class="react2">
+					   <a href="${pageContext.request.contextPath}/member/addMember">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							회원가입
+					    </a>  
+				     </span>
+				     <span class="react3">
+					     <button type="button" id="signinBtn">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							로그인
+					     </button>
+				    </span>
+				    <div class="react4">
+				    	 <span style="color:red;" id="idPwMsg" class="msg">${msg}</span>
+				    </div>
+				</div>
+			  </form>
 			</div>
-		  </form>
-		</div>
+		</tbody>
 	</body>
 </html>
