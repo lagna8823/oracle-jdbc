@@ -64,12 +64,17 @@ public class HomeController extends HttpServlet {
 	    if(request.getParameter("rowPerPage") != null) {
 	       rowPerPage = Integer.parseInt(request.getParameter("rowPerPage"));
 	    }
-	     
+	    
+	    
 	    this.boardService = new BoardService();
+	    int cnt = boardService.count(); 
+	    int lastPage = (int)(Math.ceil((double)cnt / (double)rowPerPage));
+	    
 	    ArrayList<Board> list = boardService.getBoardListByPage(currentPage, rowPerPage, word, search);
 	    request.setAttribute("boardList", list);
 	    request.setAttribute("currentPage", currentPage); // view에서 필요
 	    request.setAttribute("rowPerPage", rowPerPage); // view에서 필요
+	    request.setAttribute("lastPage", lastPage); // view에서 필요
 	    request.setAttribute("search", search); // view에서 필요
 	    
 	    session.setAttribute("loginMember", loginMember);

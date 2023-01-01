@@ -7,11 +7,11 @@
 	<title>menu</title>
 	
 		<!-- 부트스트랩 css 사용 -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/headBootstrap.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/inc/WEB-INF/Resources/css/headBootstrap.css">
 		
 	</head>
 	<body>
-		<thead>
+		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			  <div class="container-fluid">
 			    <a class="navbar-brand" href="#" _msthash="1864577" _msttexthash="22220536">탐색 모음</a>
@@ -51,6 +51,13 @@
 			    </div>
 			  </div>
 			</nav>
-		</thead>
+		</header>
+		<!-- partial jsp 페이지 사용할 코드-->
+		<ul>
+			<li><a href="${pageContext.request.contextPath}/home">홈으로</a></li>
+			<li><a href="${pageContext.request.contextPath}/member/MemberOne">회원정보</a></li>
+			<li><a href="${pageContext.request.contextPath}/board/boardList">게시판 리스트</a></li>
+			<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+		</ul>
 	</body>
 </html>

@@ -116,6 +116,27 @@ public class BoardService {
 		      }
 		      return returnBoard;
 		}
+		
+		// 공지사항 cnt 라스트페이지 
+		public int count() {
+			  this.boardDao = new BoardDao();
+			  int cnt = 0;
+		      Connection conn = null;
+		      try {
+		         conn = DBUtil.getConnection();
+		         boardDao = new BoardDao();
+		         cnt = boardDao.count(conn);
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		      } finally {
+		         try {
+		            conn.close();
+		         } catch (SQLException e) {
+		            e.printStackTrace();
+		         }
+		      }
+		      return cnt;
+		}
 				
 		// 게시판  전체
 		public ArrayList<Board> getBoardListByPage(int currentPage, int rowPerPage, String word, String search) {

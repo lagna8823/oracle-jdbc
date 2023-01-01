@@ -19,7 +19,7 @@
 	  margin:0;
 	  padding:0;
 	  font-family: sans-serif;
-	  background: linear-gradient(#141e30, #243b55);
+	  background: #73685d;
 	}
 	
 	.login-box {
@@ -50,7 +50,7 @@
 	  width: 100%;
 	  padding: 10px 0;
 	  font-size: 16px;
-	  color: #fff;
+	  color: #f5f5f5;
 	  margin-bottom: 30px;
 	  border: none;
 	  border-bottom: 1px solid #fff;
@@ -68,12 +68,11 @@
 	  transition: .5s;
 	}
 	
-	
 	.login-box form a {
 	  position: relative;
 	  display: inline-block;
 	  padding: 10px 20px;
-	  color: #03e9f4;
+	  color: #f5f5f5;
 	  font-size: 16px;
 	  text-decoration: none;
 	  text-transform: uppercase;
@@ -81,17 +80,19 @@
 	  transition: .5s;
 	  margin-top: 40px;
 	  letter-spacing: 4px
-	}
+	}	
 	
 	.login-box a:hover {
-	  background: #03e9f4;
+	  background: #73685d;
 	  color: #fff;
 	  border-radius: 5px;
-	  box-shadow: 0 0 5px #03e9f4,
-	              0 0 25px #03e9f4,
-	              0 0 50px #03e9f4,
-	              0 0 100px #03e9f4;
+	  box-shadow: 0 0 5px #73685d,
+	              0 0 25px #73685d,
+	              0 0 50px #73685d,
+	              0 0 100px #73685d;
 	}
+	
+	
 	
 	.login-box button span {
 	  position: absolute;
@@ -108,7 +109,7 @@
 	  left: -100%;
 	  width: 100%;
 	  height: 2px;
-	  background: linear-gradient(90deg, transparent, #03e9f4);
+	  background: linear-gradient(90deg, transparent, #73685d);
 	  animation: btn-anim1 1s linear infinite;
 	}
 	
@@ -126,7 +127,7 @@
 	  right: 0;
 	  width: 2px;
 	  height: 100%;
-	  background: linear-gradient(180deg, transparent, #03e9f4);
+	  background: linear-gradient(180deg, transparent, #73685d);
 	  animation: btn-anim2 1s linear infinite;
 	  animation-delay: .25s
 	}
@@ -145,7 +146,7 @@
 	  right: -100%;
 	  width: 100%;
 	  height: 2px;
-	  background: linear-gradient(270deg, transparent, #03e9f4);
+	  background: linear-gradient(270deg, transparent, #73685d);
 	  animation: btn-anim3 1s linear infinite;
 	  animation-delay: .5s
 	}
@@ -164,7 +165,115 @@
 	  left: 0;
 	  width: 2px;
 	  height: 100%;
-	  background: linear-gradient(360deg, transparent, #03e9f4);
+	  background: linear-gradient(360deg, transparent, #73685d);
+	  animation: btn-anim4 1s linear infinite;
+	  animation-delay: .75s
+	}
+	
+	@keyframes btn-anim4 {
+	  0% {
+	    bottom: -100%;
+	  }
+	  50%,100% {
+	    bottom: 100%;
+	  }
+	}
+	
+	.login-box button {
+	  position: relative;
+	  display: inline-block;
+	  padding: 10px 20px;
+	  color: #f5f5f5;
+	  background: rgba(0,0,0,.0);
+	  box-shadow: 0 15px 25px rgba(0,0,0,.0);
+	  border:none;
+	  font-size: 16px;
+	  text-decoration: none;
+	  text-transform: uppercase;
+	  overflow: hidden;
+	  transition: .5s;
+	  margin-top: 40px;
+	  letter-spacing: 4px
+	}
+	
+	.login-box button:hover {
+	  background: #73685d;
+	  color: #fff;
+	  border-radius: 5px;
+	  box-shadow: 0 0 5px #73685d,
+	              0 0 25px #73685d,
+	              0 0 50px #73685d,
+	              0 0 100px #73685d;
+	  border:none;
+	}
+	
+	.login-box button span {
+	  position: absolute;
+	  display: block;
+	}
+	
+	.login-box button span:nth-child(1) {
+	  top: 0;
+	  left: -100%;
+	  width: 100%;
+	  height: 2px;
+	  background: linear-gradient(90deg, transparent, #73685d);
+	  animation: btn-anim1 1s linear infinite;
+	}
+	
+	@keyframes btn-anim1 {
+	  0% {
+	    left: -100%;
+	  }
+	  50%,100% {
+	    left: 100%;
+	  }
+	}
+	
+	.login-box button span:nth-child(2) {
+	  top: -100%;
+	  right: 0;
+	  width: 2px;
+	  height: 100%;
+	  background: linear-gradient(180deg, transparent, #73685d);
+	  animation: btn-anim2 1s linear infinite;
+	  animation-delay: .25s
+	}
+	
+	@keyframes btn-anim2 {
+	  0% {
+	    top: -100%;
+	  }
+	  50%,100% {
+	    top: 100%;
+	  }
+	}
+	
+	.login-box button span:nth-child(3) {
+	  bottom: 0;
+	  right: -100%;
+	  width: 100%;
+	  height: 2px;
+	  background: linear-gradient(270deg, transparent, #73685d);
+	  animation: btn-anim3 1s linear infinite;
+	  animation-delay: .5s
+	}
+	
+	@keyframes btn-anim3 {
+	  0% {
+	    right: -100%;
+	  }
+	  50%,100% {
+	    right: 100%;
+	  }
+	}
+	
+	.login-box button span:nth-child(4) {
+	  bottom: -100%;
+	  left: 0;
+	  width: 2px;
+	  height: 100%;
+	  background: linear-gradient(360deg, transparent, #73685d);
 	  animation: btn-anim4 1s linear infinite;
 	  animation-delay: .75s
 	}
@@ -186,64 +295,78 @@
 		position: absolute;
 		top: 261px;
 	}
+	a {
+		  color: #f5f5f5;
+		  text-decoration: none;
+		}
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#logout').click(function(){
+				var out = confirm('로그아웃 하시겠습니까?');
+				if(out == true){
+					alert('로그아웃 되었습니다.')
+				} else { 
+					alert('취소')
+					return false;
+				}
+			});
+		});
+	</script>
 	</head>
 	<body>
-		<thead>
-			<h1>${loginMember.memberName}회원님의 정보</h1>
-			<div>
-				<a href="${pageContext.request.contextPath}/home">홈으로</a>
-				<a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-				<a href="${pageContext.request.contextPath}/board/boardList">게시판 리스트</a>
-				<a href="${pageContext.request.contextPath}/member/modifyMember">회원정보 수정</a>
-				<a href="${pageContext.request.contextPath}/member/removeMember">회원탈퇴</a>
-		</div>
-		</thead>
-		<tbody>
-			<div class="login-box">
-			<h2>${loginMember.memberName} ' INFO</h2>
-				<form>
-				    <div class="user-box">
-				      <input readonly="readonly">
-				      <label>User ID : ${loginMember.memberId}</label>	
-				    </div>
-				    <div class="user-box">
-				      <input readonly="readonly">
-				      <label>Password : ********</label>
-				    </div>
-				    <div class="user-box">
-				      <input readonly="readonly">
-				      <label>User Name : ${loginMember.memberName}</label>
-				     
-				    </div>
-				    <div class="react1">
-				    	<span class="react2">
-						   <a href="${pageContext.request.contextPath}/home">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								돌아가기
-						    </a>  
-						    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						    <a href="${pageContext.request.contextPath}/member/modifyMember">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								수정
-						     </a>
-						     <a href="${pageContext.request.contextPath}/member/removeMember">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								탈퇴
-						     </a>
-					     </span>
-					</div>
-				</form>
+		<header>
+			<div> 
+				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" href="${pageContext.request.contextPath}/home">홈으로</a>
+				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" id="logout" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" href="${pageContext.request.contextPath}/board/boardList">게시판</a>
+				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" href="${pageContext.request.contextPath}/member/memberOne">회원정보</a>
 			</div>
-		</tbody>
+		</header>
+		<div class="login-box">
+		<h2>${loginMember.memberName} ' INFO</h2>
+			<form>
+			    <div class="user-box">
+			      <input readonly="readonly">
+			      <label>User ID : ${loginMember.memberId}</label>	
+			    </div>
+			    <div class="user-box">
+			      <input readonly="readonly">
+			      <label>Password : ********</label>
+			    </div>
+			    <div class="user-box">
+			      <input readonly="readonly">
+			      <label>User Name : ${loginMember.memberName}</label>
+			     
+			    </div>
+			    <div class="react1">
+			    	<span class="react2">
+					   <a href="${pageContext.request.contextPath}/home">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							돌아가기
+					    </a>  
+					    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					    <a href="${pageContext.request.contextPath}/member/modifyMember">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							수정
+					     </a>
+					     <a href="${pageContext.request.contextPath}/member/removeMember">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							탈퇴
+					     </a>
+				     </span>
+				</div>
+			</form>
+		</div>
 	</body>
 </html>

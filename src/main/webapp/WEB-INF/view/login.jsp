@@ -19,7 +19,7 @@
 	  margin:0;
 	  padding:0;
 	  font-family: sans-serif;
-	  background: linear-gradient(#141e30, #243b55);
+	  background: #73685d;
 	}
 	
 	.login-box {
@@ -50,7 +50,7 @@
 	  width: 100%;
 	  padding: 10px 0;
 	  font-size: 16px;
-	  color: #fff;
+	  color: #f5f5f5;
 	  margin-bottom: 30px;
 	  border: none;
 	  border-bottom: 1px solid #fff;
@@ -72,7 +72,7 @@
 	.login-box .user-box input:valid ~ label {
 	  top: -20px;
 	  left: 0;
-	  color: #03e9f4;
+	  color: #f5f5f5;
 	  font-size: 12px;
 	}
 	
@@ -80,7 +80,7 @@
 	  position: relative;
 	  display: inline-block;
 	  padding: 10px 20px;
-	  color: #03e9f4;
+	  color: #f5f5f5;
 	  font-size: 16px;
 	  text-decoration: none;
 	  text-transform: uppercase;
@@ -88,16 +88,16 @@
 	  transition: .5s;
 	  margin-top: 40px;
 	  letter-spacing: 4px
-	}
+	}	
 	
 	.login-box a:hover {
-	  background: #03e9f4;
+	  background: #73685d;
 	  color: #fff;
 	  border-radius: 5px;
-	  box-shadow: 0 0 5px #03e9f4,
-	              0 0 25px #03e9f4,
-	              0 0 50px #03e9f4,
-	              0 0 100px #03e9f4;
+	  box-shadow: 0 0 5px #73685d,
+	              0 0 25px #73685d,
+	              0 0 50px #73685d,
+	              0 0 100px #73685d;
 	}
 	
 	
@@ -117,7 +117,7 @@
 	  left: -100%;
 	  width: 100%;
 	  height: 2px;
-	  background: linear-gradient(90deg, transparent, #03e9f4);
+	  background: linear-gradient(90deg, transparent, #73685d);
 	  animation: btn-anim1 1s linear infinite;
 	}
 	
@@ -135,7 +135,7 @@
 	  right: 0;
 	  width: 2px;
 	  height: 100%;
-	  background: linear-gradient(180deg, transparent, #03e9f4);
+	  background: linear-gradient(180deg, transparent, #73685d);
 	  animation: btn-anim2 1s linear infinite;
 	  animation-delay: .25s
 	}
@@ -154,7 +154,7 @@
 	  right: -100%;
 	  width: 100%;
 	  height: 2px;
-	  background: linear-gradient(270deg, transparent, #03e9f4);
+	  background: linear-gradient(270deg, transparent, #73685d);
 	  animation: btn-anim3 1s linear infinite;
 	  animation-delay: .5s
 	}
@@ -173,7 +173,7 @@
 	  left: 0;
 	  width: 2px;
 	  height: 100%;
-	  background: linear-gradient(360deg, transparent, #03e9f4);
+	  background: linear-gradient(360deg, transparent, #73685d);
 	  animation: btn-anim4 1s linear infinite;
 	  animation-delay: .75s
 	}
@@ -191,7 +191,7 @@
 	  position: relative;
 	  display: inline-block;
 	  padding: 10px 20px;
-	  color: #03e9f4;
+	  color: #f5f5f5;
 	  background: rgba(0,0,0,.0);
 	  box-shadow: 0 15px 25px rgba(0,0,0,.0);
 	  border:none;
@@ -205,13 +205,13 @@
 	}
 	
 	.login-box button:hover {
-	  background: #03e9f4;
+	  background: #73685d;
 	  color: #fff;
 	  border-radius: 5px;
-	  box-shadow: 0 0 5px #03e9f4,
-	              0 0 25px #03e9f4,
-	              0 0 50px #03e9f4,
-	              0 0 100px #03e9f4;
+	  box-shadow: 0 0 5px #73685d,
+	              0 0 25px #73685d,
+	              0 0 50px #73685d,
+	              0 0 100px #73685d;
 	  border:none;
 	}
 	
@@ -225,7 +225,7 @@
 	  left: -100%;
 	  width: 100%;
 	  height: 2px;
-	  background: linear-gradient(90deg, transparent, #03e9f4);
+	  background: linear-gradient(90deg, transparent, #73685d);
 	  animation: btn-anim1 1s linear infinite;
 	}
 	
@@ -243,7 +243,7 @@
 	  right: 0;
 	  width: 2px;
 	  height: 100%;
-	  background: linear-gradient(180deg, transparent, #03e9f4);
+	  background: linear-gradient(180deg, transparent, #73685d);
 	  animation: btn-anim2 1s linear infinite;
 	  animation-delay: .25s
 	}
@@ -262,7 +262,7 @@
 	  right: -100%;
 	  width: 100%;
 	  height: 2px;
-	  background: linear-gradient(270deg, transparent, #03e9f4);
+	  background: linear-gradient(270deg, transparent, #73685d);
 	  animation: btn-anim3 1s linear infinite;
 	  animation-delay: .5s
 	}
@@ -281,7 +281,7 @@
 	  left: 0;
 	  width: 2px;
 	  height: 100%;
-	  background: linear-gradient(360deg, transparent, #03e9f4);
+	  background: linear-gradient(360deg, transparent, #73685d);
 	  animation: btn-anim4 1s linear infinite;
 	  animation-delay: .75s
 	}
@@ -366,43 +366,41 @@
 	</script>
 	</head>
 	<body>
-		<tbody>
-			<div class="login-box">
-			  <h2>Login</h2>
-			  <form id="signinForm" action="${pageContext.request.contextPath}/member/login" method="post">
-			    <div class="user-box">
-			      <input type="text" id="id" name="memberId" required="">
-			      <label>User ID</label>
+		<div class="login-box">
+		  <h2>Login</h2>
+		  <form id="signinForm" action="${pageContext.request.contextPath}/member/login" method="post">
+		    <div class="user-box">
+		      <input type="text" id="id" name="memberId" required="">
+		      <label>User ID</label>
+		    </div>
+		    <div class="user-box">
+		      <input type="password" id="pw" name="memberPw" required="">
+		      <label>Password</label>
+		    </div>
+		    <div class="react1">
+		    	<span class="react2">
+				   <a href="${pageContext.request.contextPath}/member/addMember">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						회원가입
+				    </a>  
+			     </span>
+			     <span class="react3">
+				     <button type="button" id="signinBtn">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						로그인
+				     </button>
+			    </span>
+			    <div class="react4">
+			    	 <span style="color:red;" id="idPwMsg" class="msg">${msg}</span>
 			    </div>
-			    <div class="user-box">
-			      <input type="password" id="pw" name="memberPw" required="">
-			      <label>Password</label>
-			    </div>
-			    <div class="react1">
-			    	<span class="react2">
-					   <a href="${pageContext.request.contextPath}/member/addMember">
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							회원가입
-					    </a>  
-				     </span>
-				     <span class="react3">
-					     <button type="button" id="signinBtn">
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							로그인
-					     </button>
-				    </span>
-				    <div class="react4">
-				    	 <span style="color:red;" id="idPwMsg" class="msg">${msg}</span>
-				    </div>
-				</div>
-			  </form>
 			</div>
-		</tbody>
+		  </form>
+		</div>
 	</body>
 </html>

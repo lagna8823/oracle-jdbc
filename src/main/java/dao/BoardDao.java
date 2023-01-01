@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import util.DBUtil;
 import vo.Board;
 import vo.Member;
 
@@ -52,7 +53,7 @@ public class BoardDao {
 	}
 	
 	// 게시글 상세보기
-	public Board selectBoardListByPageUser(Connection conn, int boardNo) throws SQLException{
+	public Board selectBoardListByPageUser(Connection conn, int boardNo) throws Exception{
 		Board returnBoard = null;
 		String sql ="SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId FROM(SELECT board_no, board_title, board_content, member_id FROM board ORDER BY board_no desc) where board_no=?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -68,6 +69,18 @@ public class BoardDao {
 		rs.close();
 		stmt.close();
 		return returnBoard;
+	}
+	
+	// 공지사항 cnt 라스트페이지 
+	public int count(Connection conn) throws Exception{
+		int cnt = 0; // 전체 행의 수
+		String sql = "SELECT COUNT(*) cnt FROM board";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+	    if(rs.next()) {
+	    	cnt = rs.getInt("cnt");
+	    }
+		return cnt;
 	}
 		
 	// 게시글 리스트 (간단히 검색추가)
