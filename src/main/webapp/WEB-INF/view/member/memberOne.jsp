@@ -6,20 +6,27 @@
 	<meta charset="UTF-8">
 	<title>memberOne</title>
 	
+	<!-- header -->
+	<!-- 부트스트랩 css 사용 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/headBootstrap.css">
+		
+	<!-- body -->	
 	<!-- 부트스트랩 css 사용 -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}./member/Resources/css/bootstrap.css">
 	<!--  부트스트랩 js 사용 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}./member/Resources/js/bootstrap.js"></script>
 	
+	
 	<style>
 	html {
 	  height: 100%;
 	}
-	body {
+	.body {
 	  margin:0;
 	  padding:0;
 	  font-family: sans-serif;
 	  background: #73685d;
+	  background-size: cover; 
 	}
 	
 	.login-box {
@@ -315,14 +322,33 @@
 		});
 	</script>
 	</head>
-	<body>
+	<body class="body">
 		<header>
-			<div> 
-				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" href="${pageContext.request.contextPath}/home">홈으로</a>
-				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" id="logout" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" href="${pageContext.request.contextPath}/board/boardList">게시판</a>
-				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" href="${pageContext.request.contextPath}/member/memberOne">회원정보</a>
-			</div>
+			<br>
+			<nav style="backgorund-color:#3B3B3B;" class="navbar navbar-expand-lg navbar-light">
+			  <div class="container-fluid" style="padding-left: 2em";>
+			    <a class="navbar-brand" href="${pageContext.request.contextPath}/home" _msthash="1864226" _msttexthash="22220536">Oracle Board</a>
+			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" _msthidden="A" _msthiddenattr="1739517" _mstaria-label="320099">
+			      <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarColor01">
+			      <ul class="navbar-nav me-auto">
+			        <li class="nav-item">
+			          <a class="nav-link active" href="${pageContext.request.contextPath}/home"><font _mstmutation="1" _msthash="622544" _msttexthash="4701515">Home </font><span class="visually-hidden" _msthash="913744" _msttexthash="11687494">(현재)</span>
+			          </a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" href="${pageContext.request.contextPath}/member/memberOne" _msthash="622726" _msttexthash="8814104">Info</a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" href="${pageContext.request.contextPath}/board/boardList" _msthash="622908" _msttexthash="8603816">Board</a>
+			        </li>
+			        <li class="nav-item">
+			          <a id="logout" class="nav-link" href="${pageContext.request.contextPath}/member/logout" _msthash="623090" _msttexthash="4600687">Logout</a>
+			        </li>
+			      </ul>	
+			  </div>
+			</nav>
 		</header>
 		<div class="login-box">
 		<h2>${loginMember.memberName} ' INFO</h2>

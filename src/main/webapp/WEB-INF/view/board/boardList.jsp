@@ -47,7 +47,7 @@
 		  background: #fff;
 		}
 		
-		a {
+		.a {
 		  color: #73685d;
 		  text-decoration: none;
 		}
@@ -105,34 +105,18 @@
 				$('#pageForm').submit();
 				alert('change');
 			})
-			
-			$('#logout').click(function(){
-				var out = confirm('로그아웃 하시겠습니까?');
-				if(out == true){
-					alert('로그아웃 되었습니다.')
-				} else { 
-					alert('취소')
-					return false;
-				}
-			});
 		});
 	</script>
 	</head>
 	
 	<body>
 		<header>
+			<!-- 메뉴 partial jsp 구성 -->
 			<div>
-				<a style="font-size:1.2em;  font-weight: bolder !important;" href="${pageContext.request.contextPath}/home">홈으로</a>
-				<a style="font-size:1.2em;  font-weight: bolder !important;" id="logout" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-				<a style="font-size:1.2em;  font-weight: bolder !important;" href="${pageContext.request.contextPath}/board/boardList">게시판</a>
-				<a style="font-size:1.2em;  font-weight: bolder !important;" href="${pageContext.request.contextPath}/member/memberOne">회원정보</a>
+				<jsp:include page="/inc/menu.jsp"></jsp:include>
 			</div>
 		</header>
-		<h1>게시판 리스트</h1>
-		<div>
-			<a href="${pageContext.request.contextPath}/board/addBoard">글 작성하기</a>
-		</div>
-		<form id="pageForm" method="get" action="${pageContext.request.contextPath}/home">
+			<form id="pageForm" method="get" action="${pageContext.request.contextPath}/home">
 			<select name="search" id="search" value="${search}">
 				<c:if test="${search == ('')}">
 					<option value="" selected="selected">-선택-</option>
@@ -179,7 +163,9 @@
 						<option value="30" selected="selected">30</option>
 					</c:if>	
 			</select>
-		</form>
+			<span>&nbsp;&nbsp;&nbsp;</span>
+			<a align="right" class="a" href="${pageContext.request.contextPath}/board/addBoard">[게시글 작성]</a>
+		</form>	
 		<table>
 		    <thead>
 		    <tr>
@@ -193,7 +179,7 @@
 			    <c:forEach var="b" items="${boardList}">
 					<tr>
 						<td>${b.boardNo}</td>
-						<td><a href="${pageContext.request.contextPath}/board/boardOne?boardNo=${b.boardNo}">${b.boardTitle}</a></td>
+						<td><a class="a" href="${pageContext.request.contextPath}/board/boardOne?boardNo=${b.boardNo}">${b.boardTitle}</a></td>
 						<td>${b.memberId}</td>
 						<td>${b.createdate}</td>
 					</tr>
@@ -204,23 +190,23 @@
 		<div align="center";>
 		<!-- 페이징 -->
 			<!-- 첫 페이지 -->
-			<a href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=1&word=${word}">처음</a>
+			<a class="a" href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=1&word=${word}">처음</a>
 			
 			<!-- 이전 페이지 -->
 			<c:if test="${currentPage>1}">
-				<a href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}&word=${word}">이전</a>
+				<a class="a"  href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}&word=${word}">이전</a>
 			</c:if>	
 			
 			<!-- 현재 페이지 -->
-			${currentPage}
+			<span  class="a" >${currentPage}</span>
 			
 			<!-- 다음 페이지 -->
 			<c:if test="${currentPage<lastPage}">
-				<a href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}&word=${word}">다음</a>
+				<a  class="a"  href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}&word=${word}">다음</a>
 			</c:if>	
 			
 			<!-- 마지막 페이지 -->
-			<a href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=${lastPage}&word=${word}">마지막</a>
+			<a  class="a" href="${pageContext.request.contextPath}/home?rowPerPage=${rowPerPage}&currentPage=${lastPage}&word=${word}">마지막</a>
 		</div>
 	</body>
 </html>

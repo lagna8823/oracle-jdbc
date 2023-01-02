@@ -104,15 +104,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			$('#logout').click(function(){
-				var out = confirm('로그아웃 하시겠습니까?');
-				if(out == true){
-					alert('로그아웃 되었습니다.')
-				} else { 
-					alert('취소')
-					return false;
-				}
-			});
 			$('#delete').click(function(){
 				var del = confirm('삭제하시겠습니까?');
 				if(del == true){
@@ -127,11 +118,9 @@
 	</head>
 	<body>
 		<header>
-			<div> 
-				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" href="${pageContext.request.contextPath}/home">홈으로</a>
-				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" id="logout" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" href="${pageContext.request.contextPath}/board/boardList">게시판</a>
-				<a style="font-size:1.2em;  color: black; font-weight: bolder !important;" href="${pageContext.request.contextPath}/member/memberOne">회원정보</a>
+			<!-- 메뉴 partial jsp 구성 -->
+			<div>
+				<jsp:include page="/inc/menu.jsp"></jsp:include>
 			</div>
 		</header>
 		<h1>게시글 상세페이지</h1>
