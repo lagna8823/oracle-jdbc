@@ -6,58 +6,38 @@
 	<meta charset="utf-8">
 	<title>menu</title>
 	
-		<!-- 부트스트랩 css 사용 -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/inc/WEB-INF/Resources/css/headBootstrap.css">
+	<!-- 부트스트랩 css 사용 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/headBootstrap.css">
 		
 	</head>
 	<body>
 		<header>
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="#" _msthash="1864577" _msttexthash="22220536">탐색 모음</a>
-			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" _msthidden="A" _msthiddenattr="1739842" _mstaria-label="320099">
+			    <a class="navbar-brand" href="${pageContext.request.contextPath}/home">Oracle Board</a>
+			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
-			    <div class="collapse navbar-collapse" id="navbarColor02">
+			    <div class="collapse navbar-collapse" id="navbarColor03">
 			      <ul class="navbar-nav me-auto">
 			        <li class="nav-item">
-			          <a class="nav-link active" href="#"><font _mstmutation="1" _msthash="622973" _msttexthash="4701515">집 </font><span class="visually-hidden" _msthash="914264" _msttexthash="11687494">(현재)</span>
+			          <a class="nav-link active" href="${pageContext.request.contextPath}/home">Home
+			            <span class="visually-hidden">(current)</span>
 			          </a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link" href="#" _msthash="623155" _msttexthash="8814104">기능</a>
+			          <a class="nav-link" href="${pageContext.request.contextPath}/member/MemberOne">회원정보</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link" href="#" _msthash="623337" _msttexthash="8603816">가격</a>
+			          <a class="nav-link" href="${pageContext.request.contextPath}/board/boardList">게시판</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link" href="#" _msthash="623519" _msttexthash="4600687">약</a>
-			        </li>
-			        <li class="nav-item dropdown">
-			          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" _msthash="623701" _msttexthash="21094424">드롭다운</a>
-			          <div class="dropdown-menu" _msthidden="4">
-			            <a class="dropdown-item" href="#" _msthash="872937" _msttexthash="76466" _msthidden="1">Action</a>
-			            <a class="dropdown-item" href="#" _msthash="873054" _msttexthash="232752" _msthidden="1">Another action</a>
-			            <a class="dropdown-item" href="#" _msthash="873171" _msttexthash="349791" _msthidden="1">Something else here</a>
-			            <div class="dropdown-divider"></div>
-			            <a class="dropdown-item" href="#" _msthash="873405" _msttexthash="230529" _msthidden="1">Separated link</a>
-			          </div>
+			          <a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
 			        </li>
 			      </ul>
-			      <form class="d-flex">
-			        <input class="form-control me-sm-2" type="search" placeholder="검색" _mstplaceholder="9151272">
-			        <button class="btn btn-secondary my-2 my-sm-0" type="submit" _msthash="731341" _msttexthash="9151272">검색</button>
-			      </form>
 			    </div>
 			  </div>
 			</nav>
 		</header>
-		<!-- partial jsp 페이지 사용할 코드-->
-		<ul>
-			<li><a href="${pageContext.request.contextPath}/home">홈으로</a></li>
-			<li><a href="${pageContext.request.contextPath}/member/MemberOne">회원정보</a></li>
-			<li><a href="${pageContext.request.contextPath}/board/boardList">게시판 리스트</a></li>
-			<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
-		</ul>
 	</body>
 </html>

@@ -159,9 +159,9 @@
 					<option value="memberId" selected="selected">memberId</option>
 				</c:if>
 			</select>
-			<label for="word"> 검색 : </label>
+			<label for="word"> search : </label>
 			<input type="text" name="word" id="word" value="${word}">
-			<button type="submit">검색</button>
+			<button type="submit">search</button>
 			<select name="rowPerPage" id="rowPerPage">
 				<c:if test="${rowPerPage == 10}">
 						<option value="10" selected="selected">10</option>

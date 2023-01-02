@@ -120,11 +120,9 @@
 	
 	<body>
 		<header>
+			<!-- 메뉴 partial jsp 구성 -->
 			<div>
-				<a style="font-size:1.2em;  font-weight: bolder !important;" href="${pageContext.request.contextPath}/home">홈으로</a>
-				<a style="font-size:1.2em;  font-weight: bolder !important;" id="logout" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-				<a style="font-size:1.2em;  font-weight: bolder !important;" href="${pageContext.request.contextPath}/board/boardList">게시판</a>
-				<a style="font-size:1.2em;  font-weight: bolder !important;" href="${pageContext.request.contextPath}/member/memberOne">회원정보</a>
+				<jsp:include page="/inc/menu.jsp"></jsp:include>
 			</div>
 		</header>
 		<h1>${loginMember.memberName}님 환영합니다.</h1>
@@ -155,9 +153,9 @@
 					<option value="memberId" selected="selected">memberId</option>
 				</c:if>
 			</select>
-			<label for="word"> 검색 : </label>
+			<label for="word"> search : </label>
 			<input type="text" name="word" id="word" value="${word}">
-			<button type="submit">검색</button>
+			<button type="submit">search</button>
 			<select name="rowPerPage" id="rowPerPage">
 				<c:if test="${rowPerPage == 10}">
 						<option value="10" selected="selected">10</option>

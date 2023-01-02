@@ -301,19 +301,19 @@
 	.react2 {
 		box-sizing: border-box;
 		position: absolute;
-		top:  210px;
+		top:  200px;
 		left: 250px;
 	}
 	.react3 {
 		box-sizing: border-box;
 		position: absolute;
-		top: 210px;
+		top: 200px;
 		left: 150px;
 	}
 	.react4 {
 		box-sizing: border-box;
 		position: absolute;
-		top: 226px;
+		top: 216px;
 		right: 40px;
 	}
 	</style>
