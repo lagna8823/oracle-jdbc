@@ -144,7 +144,10 @@
 	<div style="padding-left: 30em">
 		<a href="${pageContext.request.contextPath}/board/modifyBoard?boardNo=${b.boardNo}">수정</a>
 		<span>&nbsp;&nbsp;</span>
-		<a id="delete" href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${b.boardNo}">삭제</a>
+			<a id="delete" style="background-color: #f44336; color: white; display:block; padding:14px 25px; text-decoration: none; " 
+				href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${b.boardNo}">
+				<strong>삭제</strong>
+			</a>
 	</div>
 	</body>
 </html>
