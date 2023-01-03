@@ -6,6 +6,10 @@
 		<meta charset="UTF-8">
 		<title>Modify Board</title>
 		
+		<!-- button -->
+		<!-- 부트스트랩 css 사용 -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/headBootstrap.css">
+	
 		<!-- 부트스트랩 css 사용 -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/bootstrap.css">
 		<!--  부트스트랩 js 사용 -->
@@ -151,8 +155,14 @@
 		</script>	
 	</head>
 	<body>
-		<tbody>
-		<h2>회원정보 수정</h2>
+		<header>
+			<!-- 메뉴 partial jsp 구성 -->
+			<div>
+				<jsp:include page="/inc/menu.jsp"></jsp:include>
+			</div>
+		</header>
+		<h2>Member ' Info Modify</h2>
+		<br>
 		<form id="signinForm" action="${pageContext.request.contextPath}/board/modifyBoard" method="post">
 			<div>
 			<table border="1">
@@ -163,14 +173,15 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea id="bc" rows="4" cols="60" name="boardContent">${b.boardContent}</textarea></td>
+					<td><textarea id="bc" rows="6" cols="80" name="boardContent">${b.boardContent}</textarea></td>
 				</tr>
 			</table>
-			<button type="button" id="signinBtn">수정하기</button>
-			<span style="color:red;" id="btBcMsg" class="msg"></span>
-			</div>
-			<div>
-				<a href="${pageContext.request.contextPath}/board/boardList">뒤로가기</a>
+				<br>
+				<div style="padding-left: 15em">
+					<a class="btn btn-dark" href="${pageContext.request.contextPath}/board/boardList">뒤로가기</a>
+					<button type="button" class="btn btn-dark" id="signinBtn">수정하기</button>
+					<span style="color:red;" id="btBcMsg" class="msg"></span>
+				</div>
 			</div>
 		</form>
 	</body>

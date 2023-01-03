@@ -6,6 +6,10 @@
 	<meta charset="UTF-8">
 	<title>addMember</title>
 	
+	<!-- button -->
+	<!-- 부트스트랩 css 사용 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/headBootstrap.css">
+	
 	<!-- 부트스트랩 css 사용 -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/bootstrap.css">
 	<!--  부트스트랩 js 사용 -->
@@ -150,10 +154,14 @@
 		</script>	
 	</head>
 	<body>
-		<h1>게시글 작성</h1>
-		<div>
-			<a href="${pageContext.request.contextPath}/board/boardList">돌아가기</a>
-		</div>
+		<header>
+			<!-- 메뉴 partial jsp 구성 -->
+			<div>
+				<jsp:include page="/inc/menu.jsp"></jsp:include>
+			</div>
+		</header>
+		<h1>Add Board</h1>
+		<br>
 		<form id="signinForm" action="${pageContext.request.contextPath}/board/addBoard" method="post">
 			<div>
 			<table>
@@ -163,14 +171,14 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea id="bc" rows="4" cols="60" name="boardContent"></textarea></td>
+					<td><textarea id="bc" rows="6" cols="80" name="boardContent"></textarea></td>
 				</tr>
 			</table>
 			<span style="color:red;" id="btBcMsg" class="msg">${msg}</span>
 			<br>
 			<div style="padding-left: 15em">
-				<button type="button" id="signinBtn">작성하기</button>
-				
+				<a class="btn btn-dark" href="${pageContext.request.contextPath}/board/boardList">돌아가기</a>
+				<button class="btn btn-dark" type="button" id="signinBtn">작성하기</button>
 			</div>
 			</div>
 		</form>

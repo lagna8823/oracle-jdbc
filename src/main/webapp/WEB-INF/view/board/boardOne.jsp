@@ -6,6 +6,10 @@
 	<meta charset="UTF-8">
 	<title>memberOne</title>
 	
+	<!-- button -->
+	<!-- 부트스트랩 css 사용 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/headBootstrap.css">
+	
 	<!-- 부트스트랩 css 사용 -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/bootstrap.css">
 	<!--  부트스트랩 js 사용 -->
@@ -123,8 +127,9 @@
 				<jsp:include page="/inc/menu.jsp"></jsp:include>
 			</div>
 		</header>
-		<h1>게시글 상세페이지</h1>
-		<form id="pageForm" method="get" action="${pageContext.request.contextPath}//board/boardOne">
+		<h1>Board Detail</h1>
+		<br>
+		<form id="pageForm" method="get" action="${pageContext.request.contextPath}/board/boardOne">
 	</form>
 	<table>
 		<tr>
@@ -142,9 +147,9 @@
 	</table>	
 	<br>
 	<div style="padding-left: 30em">
-		<a href="${pageContext.request.contextPath}/board/modifyBoard?boardNo=${b.boardNo}">수정</a>
+		<a class="btn btn-dark" href="${pageContext.request.contextPath}/board/modifyBoard?boardNo=${b.boardNo}">수정</a>
 		<span>&nbsp;&nbsp;</span>
-			<a id="delete" style="background-color: #f44336; color: white; display:block; padding:14px 25px; text-decoration: none; " 
+			<a id="delete" class="btn btn-dark" style=" text-decoration: none; " 
 				href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${b.boardNo}">
 				<strong>삭제</strong>
 			</a>
