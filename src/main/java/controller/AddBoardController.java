@@ -40,10 +40,10 @@ public class AddBoardController extends HttpServlet {
 		HttpSession session = request.getSession();
 		// 로그인 값 체크
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		if(loginMember == null) {
-			response.sendRedirect(request.getContextPath()+"/member/login");
-			return;
-		}
+			if(loginMember == null) {
+				response.sendRedirect(request.getContextPath()+"/member/login");
+				return;
+			}
 		request.setCharacterEncoding("UTF-8");
 		String boardTitle=request.getParameter("boardTitle");
 		String boardContent=request.getParameter("boardContent");

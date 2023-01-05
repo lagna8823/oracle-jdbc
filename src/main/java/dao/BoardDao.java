@@ -42,7 +42,7 @@ public class BoardDao {
 	// 게시글작성 AddBoardController
 	public int addBoard(Connection conn, String boardTitle, String boardContent, String memberId) throws Exception{
 		int resultRow = 0;
-		String sql = "INSERT INTO Board(board_no, Board_title, Board_content, member_id, updatedate, createdate) values (board_seq.nextval, ?, ?, ?, sysdate, sysdate)";
+		String sql = "INSERT INTO board(board_no, Board_title, Board_content, member_id, updatedate, createdate) values (board_seq.nextval, ?, ?, ?, sysdate, sysdate)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, boardTitle);
 		stmt.setString(2, boardContent);
