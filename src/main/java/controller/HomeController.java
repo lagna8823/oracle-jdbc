@@ -26,7 +26,6 @@ public class HomeController extends HttpServlet {
 		 * 로그인 전
 		 * 1) 회원가입
 		 * 2) 로그인
-		 * 
 		 * 로그인 후
 		 * 1) 로그아웃
 		 * 2) 회원정보

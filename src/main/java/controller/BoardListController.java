@@ -51,19 +51,22 @@ public class BoardListController extends HttpServlet {
 		   rowPerPage = Integer.parseInt(request.getParameter("rowPerPage"));
 	   }
 	     
-      this.boardService = new BoardService();
-      ArrayList<Board> list = boardService.getBoardListByPage(currentPage, rowPerPage, word, search);
-      request.setAttribute("search", search);
-      request.setAttribute("boardList", list);
-      request.setAttribute("currentPage", currentPage); // view에서 필요
-      request.setAttribute("rowPerPage", rowPerPage); // view에서 필요
+	   this.boardService = new BoardService();
+	   int cnt = boardService.count(); 
+	   int lastPage = (int)(Math.ceil((double)cnt / (double)rowPerPage));
+       ArrayList<Board> list = boardService.getBoardListByPage(currentPage, rowPerPage, word, search);
+       request.setAttribute("boardList", list);
+       request.setAttribute("currentPage", currentPage); // view에서 필요
+       request.setAttribute("rowPerPage", rowPerPage); // view에서 필요
+       request.setAttribute("lastPage", lastPage); // view에서 필요
+       request.setAttribute("search", search);
       
-     /*
-      * VIEW 메뉴구성
-      * 1) 글 입력
-      * 2) 글 상세보기
-      */
+      /*
+       * VIEW 메뉴구성
+       * 1) 글 입력
+       * 2) 글 상세보기
+       */
      
-      request.getRequestDispatcher("/WEB-INF/view/board/boardList.jsp").forward(request, response);
+       request.getRequestDispatcher("/WEB-INF/view/board/boardList.jsp").forward(request, response);
    }
 }
