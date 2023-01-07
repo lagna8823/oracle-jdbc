@@ -4,7 +4,7 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>memberOne</title>
+	<title>boardOne</title>
 	
 	<!-- button -->
 	<!-- 부트스트랩 css 사용 -->
